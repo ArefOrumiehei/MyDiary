@@ -6,6 +6,9 @@ import "../styles/diary.css";
 // Contexts
 import { useTheme } from "../contexts/ThemeProviderContext";
 
+// API
+import api from '../api/configuration';
+
 export default function Diary({ selectedDate }) {
   const todayKey = selectedDate.toISOString().split("T")[0];
 
@@ -19,34 +22,47 @@ export default function Diary({ selectedDate }) {
   const { setTheme } = useTheme();
 
   useEffect(() => {
+  const fetchDiary = async () => {
     try {
-      const saved =
-        JSON.parse(localStorage.getItem(`diary-${todayKey}`)) || emptyEntry;
-      setEntry(saved);
-      setDraft(saved);
-      setExpanded(false);
-      setEditMode(false);
+      const { data } = await api.get(`/diary/${todayKey}`);
+      setEntry(data);
+      setDraft(data);
+      setTheme(data.mood || 'neutral');
     } catch {
-      localStorage.removeItem(`diary-${todayKey}`);
+      setEntry(emptyEntry);
+      setDraft(emptyEntry);
+      setTheme('neutral');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [todayKey]);
+  };
+  fetchDiary();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [todayKey]);
+
 
   const isEmpty = !entry.title && !entry.text && entry.tags.length === 0;
 
-  const saveDiary = () => {
+  const saveDiary = async () => {
     localStorage.setItem(`diary-${todayKey}`, JSON.stringify(draft));
     setEntry(draft);
     setTheme(draft?.mood || "neutral");
     setExpanded(true);
     setEditMode(false);
+
+    await api.post('/diary', {
+      date: todayKey,
+      title: draft.title,
+      text:  draft.text,
+      tags:  draft.tags,
+      mood:  draft.mood
+    });
   };
 
-  const deleteDiary = () => {
+  const deleteDiary = async () => {
     localStorage.removeItem(`diary-${todayKey}`);
     setTheme("neutral")
     setEntry(emptyEntry);
     setDraft(emptyEntry);
+    await api.delete(`/diary/${todayKey}`);
   };
 
   const [tagInput, setTagInput] = useState("");

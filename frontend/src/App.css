@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Tanha, sans-serif;
 }
 
 html, body {
@@ -43,14 +44,3 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: var(--color-secondary);
 }
-
-.previewContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 100px);
-}
-
-.theme-neutral { background-image: url("./assets/images/neutral.jpg"); }
-.theme-happy   { background-image: url("./assets/images/happy.jpg");   }
-.theme-sad     { background-image: url("./assets/images/sad.jpg");     }

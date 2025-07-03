@@ -1,34 +1,35 @@
-import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-// Styles
-import "./App.css";
+// Pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/Signup";
 
-// Contexts
-import { useTheme } from "./contexts/ThemeProviderContext";
+// Protect Route
+import AuthRoute from "./routers/AuthRoute";
 
-// Components
-import Header from "./components/header";
-import Diary from "./components/Diary";
+// Helpers
+import { format } from "./helpers/dateHelpers";
 
-function App() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const { setTheme } = useTheme();
-
-  useEffect(() => {
-    const key = selectedDate.toISOString().split("T")[0];
-    const saved = JSON.parse(localStorage.getItem(`diary-${key}`));
-    setTheme(saved?.mood || "neutral");
-  }, [selectedDate, setTheme]);
+export default function App() {
+  const today = format(new Date());
 
   return (
-    <>
-      <Header selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-      <div className="previewContainer">
-        <Diary selectedDate={selectedDate} />
-      </div>
-    </>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+
+      <Route
+        path="/:date"
+        element={
+          <AuthRoute>
+            <Home />
+          </AuthRoute>
+        }
+      />
+
+      <Route path="/" element={<Navigate to={`/${today}`} replace />} />
+      <Route path="*" element={<Navigate to={`/${today}`} replace />} />
+    </Routes>
   );
 }
-
-export default App;
