@@ -1,0 +1,49 @@
+@import url('../theme.css');
+
+@font-face {
+  font-family: Tanha;
+  src: url(../assets/fonts/Tanha-FD.ttf);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+#searchInput {
+  width: 100%;
+  max-width: 250px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--input-border);
+  background-color: var(--input-bg);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+#searchInput::placeholder {
+  color: var(--input-border);
+}
+
+.daysContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.daysContainer button:disabled:hover {
+  background: #CCCCCC;
+}
+
+.daysContainer span {
+  font-family: Tanha, sans-serif;
+  font-weight: 700;
+  color: var(--text-color);
+  text-align: center;
+  width: 150px;
+}

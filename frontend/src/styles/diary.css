@@ -1,0 +1,272 @@
+.previewDiaryContainer,
+.emptyPreviewDiaryContainer {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,1),
+      rgba(0,0,0,1) 1px,
+      transparent 1px,
+      transparent 29px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.35),
+      rgba(255,255,255,0.35)
+    );
+  background-size: 100% 29px;
+  background-repeat: repeat-y;
+  background-color: rgba(255, 255, 255, 0.35);
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 600px;
+  padding: 60px 40px 20px 60px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Tahoma', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.previewDiaryContainer.collapsed {
+  height: 220px;
+}
+
+.previewDiaryContainer.expanded {
+  height: 493px;
+}
+
+.previewDiaryContainer.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewDiaryContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 2px;
+  height: 100%;
+  background-color: #e74c3c;
+}
+
+.paperHeader {
+  position: absolute;
+  top: 15px;
+  left: 60px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 100px);
+}
+
+.diaryContextContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
+
+.diaryContent {
+  line-height: 29px;
+  color: #000;
+  font-weight: 500;
+  font-size: .9rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  margin-bottom: 60px;
+
+  &.collapsed {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.titleInput {
+  width: 100%;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 4px 6px;
+  font-size: .9rem;
+  background: var(--input-bg);
+  color: #000;
+}
+
+.diaryTitle {
+  font-weight: 700;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.diaryTextarea {
+  width: 100%;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  resize: vertical;
+  line-height: 1.6;
+  /* background-color: transparent; */
+  font-family: Tanha, sans-serif;
+  scrollbar-width: thin;
+}
+
+
+.diaryPalceholder {
+  text-align: center;
+  font-size: 24px;
+  color: #555;
+  width: 100%;
+  line-height: 29px;
+}
+
+
+.writeDiaryBtn {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 0px;
+  border-top-left-radius: 8px;
+  background: var(--color-primary);
+}
+
+.actions {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.saveBtn {
+  background: #4CAF50;
+  border-top-right-radius: 8px !important;
+}
+
+.discardBtn {
+  background: tomato;
+}
+
+.saveBtn, .discardBtn, .editBtn, .deleteBtn, .collapsBtn {
+  border-radius: 0;
+}
+
+.editBtn {
+  background: #2196F3;
+}
+
+.deleteBtn {
+  background: #F44336;
+}
+
+.collapsBtn {
+  border-top-right-radius: 8px !important;
+}
+
+.editDiary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.diaryTags, .editDiaryTags{
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px;
+}
+
+.diaryTags {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+
+.tag {
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  color: #444;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+
+.tagEditor {
+  position: relative;
+  background: #fff;
+  border: 1.5px solid var(--input-border); 
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tagEditor input { 
+  background: transparent;
+  padding: 6px 10px; 
+  border-radius: 8px; 
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.tagEditor input:focus {
+  border: none;
+}
+
+.tagEditor input::placeholder {
+  color: var(--input-border);
+}
+
+.addTagBtn {
+  padding: 6px;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--btn-color);
+  background: var(--color-primary);
+}
+
+
+.moodSelector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.moodSelector span {
+  color: #000;
+}
+
+.removeTagBtn {
+  color: red;
+  font-size: 1rem;
+  cursor: pointer;
+}

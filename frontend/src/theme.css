@@ -1,0 +1,56 @@
+.theme-neutral {
+  --color-bg: #FFFECE;
+  --color-primary: #E69DB8;
+  --color-secondary: #FFD0C7;
+  --color-accent: #F1E7E7;
+
+  --btn-bg: linear-gradient(135deg, #E69DB8, #FFD0C7);
+  --btn-color: #fff;
+  --input-bg: #fff;
+  --input-border: #E69DB8;
+  --text-color: #333;
+
+  --glass-bg: rgba(255, 248, 166, 0.6);
+  --glass-border: rgba(230, 157, 184, 0.5);
+  --surface-1: #fff9f2;
+  --surface-2: #fff0e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.theme-happy {
+  --color-bg: #FDFFC2;
+  --color-primary: #FF76CE;
+  --color-secondary: #94FFD8;
+  --color-accent: #A3D8FF;
+
+  --btn-bg: linear-gradient(135deg, #FF76CE, #94FFD8);
+  --btn-color: #fff;
+  --input-bg: #fff;
+  --input-border: #FF76CE;
+  --text-color: #222;
+
+  --glass-bg: rgba(255, 195, 230, 0.5);
+  --glass-border: rgba(255, 118, 206, 0.45);
+  --surface-1: #fff3fa;
+  --surface-2: #f3fff5;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.theme-sad {
+  --color-bg: #A3FFD6;
+  --color-primary: #8576FF;
+  --color-secondary: #7BC9FF;
+  --color-accent: #1C1678;
+
+  --btn-bg: linear-gradient(135deg, #8576FF, #7BC9FF);
+  --btn-color: #fff;
+  --input-bg: #fff;
+  --input-border: #8576FF;
+  --text-color: #e4e4e4;
+  
+  --glass-bg: rgba(123, 201, 255, 0.4);
+  --glass-border: rgba(133, 118, 255, 0.5);
+  --surface-1: #f2f7ff;
+  --surface-2: #e8faff;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
