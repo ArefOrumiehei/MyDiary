@@ -1,0 +1,23 @@
+@import url("../theme.css");
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-color: var(--color-bg);
+  color: var(--text-color);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+.previewContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 100px);
+}
+
+.theme-neutral { background-image: url("../assets/images/neutral2.jpg"); }
+.theme-happy   { background-image: url("../assets/images/happy.jpg");   }
+.theme-sad     { background-image: url("../assets/images/sad.jpg");     }

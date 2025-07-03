@@ -1,3 +1,7 @@
+button, input, select {
+  font-family: Tanha, sans-serif;
+}
+
 .previewDiaryContainer,
 .emptyPreviewDiaryContainer {
   background-image:
@@ -23,9 +27,10 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Tahoma', sans-serif;
+  font-family: Tanha, sans-serif;
   transition: all 0.3s ease;
 }
+
 
 .previewDiaryContainer.collapsed {
   height: 220px;
@@ -80,9 +85,10 @@
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: thin;
   margin-bottom: 60px;
+  width: 100%;
 
   &.collapsed {
     display: -webkit-box;
@@ -180,13 +186,13 @@
 .editDiary {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 16px;
   height: 100%;
 }
 
-.diaryTags, .editDiaryTags{
+.diaryTags, .editDiaryTags {
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -218,37 +224,20 @@
 
 
 .tagEditor {
-  position: relative;
-  background: #fff;
-  border: 1.5px solid var(--input-border); 
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  overflow: hidden;
 }
 
 .tagEditor input { 
-  background: transparent;
-  padding: 6px 10px; 
-  border-radius: 8px; 
-  width: 100%;
-  outline: none;
-  border: none;
-}
-
-.tagEditor input:focus {
-  border: none;
-}
-
-.tagEditor input::placeholder {
-  color: var(--input-border);
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .addTagBtn {
-  padding: 6px;
-  border-radius: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
+  padding: 8px 10px;
+  border-radius: 8px 0 0 8px;
   color: var(--btn-color);
   background: var(--color-primary);
 }
@@ -269,4 +258,18 @@
   color: red;
   font-size: 1rem;
   cursor: pointer;
+}
+
+@media (max-width: 400px) {
+  .moodSelector{
+    margin-bottom: 30px;
+  }
+
+  .diaryTags {
+    bottom: 50px;
+  }
+
+  .diaryTags, .editDiaryTags {
+    width: 90%;
+  }
 }
