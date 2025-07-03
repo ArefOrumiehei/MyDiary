@@ -8,6 +8,7 @@ import { useTheme } from "../contexts/ThemeProviderContext";
 
 // API
 import api from '../api/configuration';
+import Modal from "./Modal";
 
 export default function Diary({ selectedDate }) {
   const todayKey = selectedDate.toISOString().split("T")[0];
@@ -15,6 +16,8 @@ export default function Diary({ selectedDate }) {
   const emptyEntry = { title: "", text: "", tags: [], mood: "neutral" };
   const [entry, setEntry] = useState(emptyEntry);
   const [draft, setDraft] = useState(emptyEntry);
+  const [showModal, setShowModal] = useState(false);
+
 
   const [editMode, setEditMode] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -57,13 +60,15 @@ export default function Diary({ selectedDate }) {
     });
   };
 
-  const deleteDiary = async () => {
+  const confirmDelete = async () => {
+    await api.delete(`/diary/${todayKey}`);
     localStorage.removeItem(`diary-${todayKey}`);
-    setTheme("neutral")
+    setTheme("neutral");
     setEntry(emptyEntry);
     setDraft(emptyEntry);
-    await api.delete(`/diary/${todayKey}`);
+    setShowModal(false);
   };
+
 
   const [tagInput, setTagInput] = useState("");
   const addTag = () => {
@@ -135,7 +140,7 @@ export default function Diary({ selectedDate }) {
             >
               ادیت
             </button>
-            <button className="deleteBtn" onClick={deleteDiary}>
+            <button className="deleteBtn" onClick={() => setShowModal(true)}>
               حذف
             </button>
           </div>
@@ -172,8 +177,8 @@ export default function Diary({ selectedDate }) {
           </div>
           {draft.tags.length > 0 && (
             <div className="editDiaryTags">
-              {draft.tags.map((t) => (
-                <div className="tag">
+              {draft.tags.map((t, index) => (
+                <div className="tag" key={index}>
                   <span key={t}>{t}</span>
                   <span className="removeTagBtn" onClick={() => removeTag(t)}>
                     ×
@@ -204,6 +209,15 @@ export default function Diary({ selectedDate }) {
             </button>
           </div>
         </div>
+      )}
+      {showModal && (
+        <Modal
+          message="آیا مطمئنی که می‌خواهی این خاطره را حذف کنی؟"
+          onConfirm={confirmDelete}
+          onCancel={() => setShowModal(false)}
+          confirmTxt="آره حذفش کن"
+          cancelTxt="نه نه دستم خورد"
+        />
       )}
     </div>
   );
