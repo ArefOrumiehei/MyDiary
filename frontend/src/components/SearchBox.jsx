@@ -1,9 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { debounce } from "lodash";
-import api from "../api/configuration";
-import "../styles/search-box.css";
-import { toPersianDate } from "../helpers/dateHelpers";
 import { Link } from "react-router-dom";
+import { debounce } from "lodash";
+
+// API
+import api from "../api/configuration";
+
+// Styles
+import "../styles/search-box.css";
+
+// Helpers
+import { toPersianDate } from "../helpers/dateHelpers";
 
 export default function SearchBox() {
   const [query, setQuery] = useState("");
