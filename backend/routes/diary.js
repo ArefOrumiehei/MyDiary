@@ -23,7 +23,7 @@ router.get('/search', auth, async (req, res) => {
 // GET  /api/diary/:date
 router.get('/:date', auth, async (req, res) => {
   const doc = await Diary.findOne({ user: req.user.id, date: req.params.date });
-  if (!doc) return res.status(404).json('برای امروز خاطره ای نوشته نشده است');
+  if (!doc) return res.status(201).json('برای امروز خاطره ای نوشته نشده است');
   res.json(doc);
 });
 
