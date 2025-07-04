@@ -42,7 +42,7 @@ export default function Diary({ selectedDate }) {
 }, [todayKey]);
 
 
-  const isEmpty = !entry.title && !entry.text && entry.tags.length === 0;
+  const isEmpty = !entry?.title && !entry?.text && entry?.tags?.length === 0;
 
   const saveDiary = async () => {
     localStorage.setItem(`diary-${todayKey}`, JSON.stringify(draft));
@@ -73,13 +73,13 @@ export default function Diary({ selectedDate }) {
   const [tagInput, setTagInput] = useState("");
   const addTag = () => {
     const t = tagInput.trim();
-    if (t && !draft.tags.includes(t)) {
+    if (t && !draft.tags?.includes(t)) {
       setDraft({ ...draft, tags: [...draft.tags, t] });
     }
     setTagInput("");
   };
   const removeTag = (t) =>
-    setDraft({ ...draft, tags: draft.tags.filter((x) => x !== t) });
+    setDraft({ ...draft, tags: draft.tags?.filter((x) => x !== t) });
 
   return (
     <div
@@ -111,14 +111,14 @@ export default function Diary({ selectedDate }) {
             {entry.text}
           </p>
 
-          {entry.tags.length > 0 && (
+          {entry?.tags?.length > 0 && (
             <div className="diaryTags">
               {(expanded ? entry.tags : entry.tags.slice(0, 3)).map((t) => (
                 <span key={t} className="tag">
                   {t}
                 </span>
               ))}
-              {!expanded && entry.tags.length > 3 && (
+              {!expanded && entry?.tags?.length > 3 && (
                 <span className="tag moreTag">{entry.tags.length - 3}+</span>
               )}
             </div>
@@ -175,7 +175,7 @@ export default function Diary({ selectedDate }) {
               افزودن
             </button>
           </div>
-          {draft.tags.length > 0 && (
+          {draft?.tags?.length > 0 && (
             <div className="editDiaryTags">
               {draft.tags.map((t, index) => (
                 <div className="tag" key={index}>
