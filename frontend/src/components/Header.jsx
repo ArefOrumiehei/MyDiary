@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { Calendar } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian"
@@ -23,6 +25,13 @@ export default function Header({ selectedDate, onJump }) {
   const [open, setOpen] = useState(false);
   const dateRef = useRef(null);
 
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login", { replace: true });
+  };
+
   const handlePick = (d) => {
     setOpen(false);
     onJump((d - selectedDate) / 86400000);
@@ -41,7 +50,10 @@ export default function Header({ selectedDate, onJump }) {
   
   return (
     <div className="header">
-      <SearchBox />
+      <div className="searchWrap">
+        <LogOut size={20} onClick={logout} className="logoutBtn"  />
+        <SearchBox />
+      </div>
       <div className="daysContainer">
         {showBackBtn && (
           <button onClick={() => onJump(0)} className="todayBtn">

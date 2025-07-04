@@ -29,6 +29,7 @@ export default function SearchBox() {
       const { data } = await api.get("/diary/search", {
         params: { query: q },
         signal: abortRef.current.signal,
+        skipLoading: true,  
       });
       setResults(data);
     } catch (e) { 

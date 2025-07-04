@@ -47,9 +47,4 @@
   padding: 8px 10px; 
   font-size: 0.9rem; 
 }
-.spinner { 
-  position: absolute; 
-  right: 8px; 
-  top: 50%; 
-  transform: translateY(-50%); 
-}
+
