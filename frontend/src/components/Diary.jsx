@@ -26,20 +26,12 @@ export default function Diary({ selectedDate }) {
 
   const { setTheme } = useTheme();
 
-  const isValidDiary = (obj) => {
-    obj &&
-    typeof obj === "object" &&
-    typeof obj.title === "string" &&
-    typeof obj.text === "string" &&
-    Array.isArray(obj.tags) &&
-    typeof obj.mood === "string";
-  }
-
   useEffect(() => {
   const fetchDiary = async () => {
     try {
       const { data } = await api.get(`/diary/${todayKey}`);
-      if (isValidDiary(data)) {
+      
+      if (data && typeof data === "object") {
         setEntry(data);
         setDraft(data);
         setTheme(data.mood || "neutral");
