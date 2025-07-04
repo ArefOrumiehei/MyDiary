@@ -16,9 +16,9 @@ export default function SearchBox() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const boxRef       = useRef(null);
-  const abortRef     = useRef(null);
-  const debounceRef  = useRef(null);
+  const boxRef = useRef(null);
+  const abortRef = useRef(null);
+  const debounceRef = useRef(null);
 
   const doSearch = debounce(async (q) => {
     if (abortRef.current) abortRef.current.abort(); 
@@ -81,7 +81,7 @@ export default function SearchBox() {
             ? <p className="noResult">موردی یافت نشد</p>
             : results.map(r => (
               <Link key={r._id} to={`/${r.date}`} className="item">
-                <strong>{r.title || 'بدون عنوان'}</strong>
+                <strong className="title">{r.title || 'بدون عنوان'}</strong>
                 <span className="date">{toPersianDate(r.date)}</span>
               </Link>
             ))}

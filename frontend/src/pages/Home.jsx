@@ -18,8 +18,11 @@ function Home() {
 
   const [selectedDate, setSelectedDate] = useState(() => new Date(date));
 
-
   const goTo = (days) => {
+    if (days === 0) {
+      navigate(`/${format(new Date())}`);
+      return;
+    }
     const next = addDays(selectedDate, days);
     if (next > new Date()) return;
     navigate(`/${format(next)}`);

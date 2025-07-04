@@ -4,14 +4,18 @@
 }
 
 #searchInput {
-  width: 100%; padding: 6px 10px;
+  width: 100%; 
+  padding: 6px 10px;
   border: 1px solid var(--input-border);
   border-radius: 8px;
   background: var(--input-bg);
 }
 
 .resultBox {
-  position: absolute; top: 100%; left: 0; right: 0;
+  position: absolute; 
+  top: 100%; 
+  left: 0; 
+  right: 0;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(6px);
@@ -19,14 +23,26 @@
   border-radius: 0 0 8px 8px;
   z-index: 5;
 }
+
 .item {
-  display: flex; justify-content: space-between;
-  padding: 6px 10px; text-decoration: none;
+  display: flex; 
+  justify-content: space-between;
+  padding: 6px 10px; 
+  text-decoration: none;
   color: #000;
 }
+
 .item:hover { 
   background: var(--surface-1); 
 }
+
+.title {
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .noResult { 
   padding: 8px 10px; 
   font-size: 0.9rem; 

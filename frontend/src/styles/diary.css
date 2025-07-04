@@ -23,7 +23,7 @@ button, input, select {
   border: 1px solid #ccc;
   border-radius: 12px;
   width: 600px;
-  padding: 60px 40px 20px 60px;
+  padding: 50px 40px 20px 40px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
