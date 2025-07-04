@@ -8,6 +8,8 @@ import { useTheme } from "../contexts/ThemeProviderContext";
 
 // API
 import api from '../api/configuration';
+
+// Components
 import Modal from "./Modal";
 
 export default function Diary({ selectedDate }) {
@@ -33,8 +35,6 @@ export default function Diary({ selectedDate }) {
     typeof obj.mood === "string";
   }
 
-
-
   useEffect(() => {
   const fetchDiary = async () => {
     try {
@@ -58,7 +58,6 @@ export default function Diary({ selectedDate }) {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [todayKey]);
 
-  console.log("entry", entry);
   const isEmpty = !entry.title && !entry.text && entry.tags?.length === 0;
 
   const saveDiary = async () => {
@@ -97,9 +96,6 @@ export default function Diary({ selectedDate }) {
   };
   const removeTag = (t) =>
     setDraft({ ...draft, tags: draft.tags?.filter((x) => x !== t) });
-
-  console.log("isEmpty", isEmpty);
-  console.log("editMode",editMode);
 
   return (
     <div
