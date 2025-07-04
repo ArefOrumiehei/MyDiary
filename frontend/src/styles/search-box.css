@@ -48,3 +48,15 @@
   font-size: 0.9rem; 
 }
 
+.searchBoxSpinner {
+  position: absolute;
+  top: 10px;
+  left: 10px; 
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  pointer-events: none;
+}

@@ -74,7 +74,7 @@ export default function SearchBox() {
         autoComplete="off"
       />
 
-      {loading && <div className="spinner" />}
+      {loading && <div className="searchBoxSpinner" />}
 
       {query && !loading && (
         <div className="resultBox">
