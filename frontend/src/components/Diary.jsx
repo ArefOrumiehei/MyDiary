@@ -24,13 +24,30 @@ export default function Diary({ selectedDate }) {
 
   const { setTheme } = useTheme();
 
+  const isValidDiary = (obj) => {
+    obj &&
+    typeof obj === "object" &&
+    typeof obj.title === "string" &&
+    typeof obj.text === "string" &&
+    Array.isArray(obj.tags) &&
+    typeof obj.mood === "string";
+  }
+
+
+
   useEffect(() => {
   const fetchDiary = async () => {
     try {
       const { data } = await api.get(`/diary/${todayKey}`);
-      setEntry(data);
-      setDraft(data);
-      setTheme(data.mood || 'neutral');
+      if (isValidDiary(data)) {
+        setEntry(data);
+        setDraft(data);
+        setTheme(data.mood || "neutral");
+      } else {
+        setEntry(emptyEntry);
+        setDraft(emptyEntry);
+        setTheme("neutral");
+      }
     } catch {
       setEntry(emptyEntry);
       setDraft(emptyEntry);
@@ -41,8 +58,8 @@ export default function Diary({ selectedDate }) {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [todayKey]);
 
-
-  const isEmpty = !entry?.title && !entry?.text && entry?.tags?.length === 0;
+  console.log("entry", entry);
+  const isEmpty = !entry.title && !entry.text && entry.tags?.length === 0;
 
   const saveDiary = async () => {
     localStorage.setItem(`diary-${todayKey}`, JSON.stringify(draft));
@@ -80,6 +97,9 @@ export default function Diary({ selectedDate }) {
   };
   const removeTag = (t) =>
     setDraft({ ...draft, tags: draft.tags?.filter((x) => x !== t) });
+
+  console.log("isEmpty", isEmpty);
+  console.log("editMode",editMode);
 
   return (
     <div
