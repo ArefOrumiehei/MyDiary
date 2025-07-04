@@ -12,9 +12,9 @@ app.use(express.json());
 
 const cors = require('cors');
 app.use(cors({
-  origin: 'http://localhost:5173' | "https://my-diary-lake.vercel.app/",
-  credentials: false
+  origin: ["http://localhost:5173", "https://my-diary-lake.vercel.app"],
 }));
+
 
 app.get('/api/private', auth, (req, res) => res.json('ok'));
 app.use('/api/auth', authRoutes);
@@ -22,6 +22,7 @@ app.use('/api/diary', diaryRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
+    console.log("✅ Mongo connected");
     app.listen(process.env.PORT, () =>
       console.log(`🚀  API ready on http://localhost:${process.env.PORT}`)
     );
