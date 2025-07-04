@@ -29,6 +29,7 @@ button, input, select {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Tanha, sans-serif;
   transition: all 0.3s ease;
+  margin: 0 16px;
 }
 
 
