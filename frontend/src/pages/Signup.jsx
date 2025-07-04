@@ -39,7 +39,7 @@ export default function SignUp() {
         name: data.name,
         email: data.email,
         password: data.password,
-      });
+      }, { skipLoading: true });
       localStorage.setItem('token', res.data.token);
       toast.success('ثبت‌نام موفق!');
       navigate(`/${today}`, { replace: true });

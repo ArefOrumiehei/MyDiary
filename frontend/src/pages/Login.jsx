@@ -29,7 +29,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await api.post('/auth/login', data);
+      const res = await api.post('/auth/login', data, { skipLoading: true });
       localStorage.setItem("token", res.data.token);
       toast.success('ورود موفق!');
       navigate(`/${today}`, { replace: true });
