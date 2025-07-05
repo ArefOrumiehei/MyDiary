@@ -63,22 +63,32 @@ export default function Diary({ selectedDate }) {
     setExpanded(false);
     setEditMode(false);
 
-    await api.post('/diary', {
-      date: todayKey,
-      title: draft.title,
-      text:  draft.text,
-      tags:  draft.tags,
-      mood:  draft.mood
-    });
+    try {
+      await api.post('/diary', {
+        date: todayKey,
+        title: draft.title,
+        text:  draft.text,
+        tags:  draft.tags,
+        mood:  draft.mood
+      });
+      toast.success("با موفقیت ثبت شد")
+    } catch {
+      toast.error("لطفا دوباره امتحان کنید")
+    }
   };
-
+  
   const confirmDelete = async () => {
-    await api.delete(`/diary/${todayKey}`);
-    localStorage.removeItem(`diary-${todayKey}`);
-    setTheme("neutral");
-    setEntry(emptyEntry);
-    setDraft(emptyEntry);
-    setShowModal(false);
+    try {
+      await api.delete(`/diary/${todayKey}`);
+      localStorage.removeItem(`diary-${todayKey}`);
+      setTheme("neutral");
+      setEntry(emptyEntry);
+      setDraft(emptyEntry);
+      setShowModal(false);
+      toast.success("خاطرت با موفقیت حذف شد")
+    } catch {
+      toast.error("لطفا دوباره امتحان کنید")
+    }
   };
 
 

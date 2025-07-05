@@ -44,7 +44,7 @@ export default function SignUp() {
       toast.success('ثبت‌نام موفق!');
       navigate(`/${today}`, { replace: true });
     } catch (err) {
-      toast.error(err.response.data);
+      toast.error(err.response.data || "خطا در ثبت‌نام");
     }
   };
 
