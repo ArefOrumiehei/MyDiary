@@ -14,7 +14,7 @@ export const isValidISO = (str) =>
 
 
 export const toPersianDate = (iso) => {
-  // iso مثل "2025-07-03"
+  // iso "2025-07-03"
   const [y, m, d] = iso.split("-");
   const g = new Date(+y, +m - 1, +d);
 
