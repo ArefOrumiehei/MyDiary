@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 
 //Styles
 import "../styles/diary.css";
@@ -35,6 +36,8 @@ export default function Diary({ selectedDate }) {
         setEntry(data);
         setDraft(data);
         setTheme(data.mood || "neutral");
+        setExpanded(false);
+        setEditMode(false)
       } else {
         setEntry(emptyEntry);
         setDraft(emptyEntry);
@@ -44,6 +47,7 @@ export default function Diary({ selectedDate }) {
       setEntry(emptyEntry);
       setDraft(emptyEntry);
       setTheme('neutral');
+      toast.error("لطفا دوباره امتحان کنید")
     }
   };
   fetchDiary();
@@ -56,7 +60,7 @@ export default function Diary({ selectedDate }) {
     localStorage.setItem(`diary-${todayKey}`, JSON.stringify(draft));
     setEntry(draft);
     setTheme(draft?.mood || "neutral");
-    setExpanded(true);
+    setExpanded(false);
     setEditMode(false);
 
     await api.post('/diary', {
@@ -220,7 +224,7 @@ export default function Diary({ selectedDate }) {
       )}
       {showModal && (
         <Modal
-          message="آیا مطمئنی که می‌خواهی این خاطره را حذف کنی؟"
+          message="آیا مطمئنی که می‌خوای این خاطره را حذف کنی؟"
           onConfirm={confirmDelete}
           onCancel={() => setShowModal(false)}
           confirmTxt="آره حذفش کن"
