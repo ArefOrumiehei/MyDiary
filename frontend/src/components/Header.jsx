@@ -13,6 +13,7 @@ import "../styles/header.css"
 
 // Components
 import SearchBox from "./SearchBox"
+import Modal from "./Modal";
 
 export default function Header({ selectedDate, onJump }) {
   const formattedDate = selectedDate.toLocaleDateString('fa-IR', {
@@ -23,6 +24,8 @@ export default function Header({ selectedDate, onJump }) {
   })
 
   const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const dateRef = useRef(null);
 
   const navigate = useNavigate();
@@ -51,7 +54,7 @@ export default function Header({ selectedDate, onJump }) {
   return (
     <div className="header">
       <div className="searchWrap">
-        <LogOut size={20} onClick={logout} className="logoutBtn"  />
+        <LogOut size={20} onClick={() => setIsModalOpen(true)} className="logoutBtn"  />
         <SearchBox />
       </div>
       <div className="daysContainer">
@@ -89,6 +92,15 @@ export default function Header({ selectedDate, onJump }) {
         </div>
         
       </div>
+      {isModalOpen && (
+        <Modal
+          message="آیا مطمئنی که میخوای از این حساب خارج بشی؟"
+          onConfirm={logout}
+          onCancel={() => setIsModalOpen(false)}
+          confirmTxt="آره خاطرات دردآوردن"
+          cancelTxt="نه نه دستم خورد"
+        />
+      )}
     </div>
   )
 }
