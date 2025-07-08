@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,6 +27,7 @@ export default function Header({ selectedDate, onJump }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const dateRef = useRef(null);
+  const calendarRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -50,6 +51,25 @@ export default function Header({ selectedDate, onJump }) {
   const isSameDate = (d1, d2) => {
     return d1.toDateString() === d2.toDateString()
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        calendarRef.current &&
+        !calendarRef.current.contains(event.target) &&
+        !dateRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
   
   return (
     <div className="header">
@@ -76,6 +96,7 @@ export default function Header({ selectedDate, onJump }) {
                 locale={persian_fa}
                 maxDate={today}
                 className="rmdp-mobile purple"
+                ref={calendarRef}
                 style={{
                   position: "absolute",
                   top: "calc(100% + 16px)",
