@@ -118,7 +118,7 @@ export default function Header({ selectedDate, onJump }) {
           message="آیا مطمئنی که میخوای از این حساب خارج بشی؟"
           onConfirm={logout}
           onCancel={() => setIsModalOpen(false)}
-          confirmTxt="آره خاطرات دردآوردن"
+          confirmTxt="آره خاطرات دردآورن"
           cancelTxt="نه نه دستم خورد"
         />
       )}
