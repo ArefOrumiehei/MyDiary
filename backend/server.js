@@ -12,7 +12,9 @@ app.use(express.json());
 
 const cors = require('cors');
 app.use(cors({
-  origin: ["http://localhost:5173", "https://my-diary-lake.vercel.app"],
+  // origin: ["http://localhost:5173", "http://localhost:8081", "https://my-diary-lake.vercel.app"],
+  origin: true,
+  credentials: true,
 }));
 
 
